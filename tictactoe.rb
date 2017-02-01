@@ -1,9 +1,11 @@
 # tIC tAC TOE
-# found this method on stackoverflow
+
 class Array
+# found this method on stackoverflow
   def same_values?
     uniq.length == 1
   end
+  
   @marked
   attr_accessor :marked
   end
