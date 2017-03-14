@@ -1,12 +1,10 @@
 # tIC tAC TOE
-
-class Array
 # found this method on stackoverflow
+class Array
   def same_values?
     uniq.length == 1
   end
   
-  @marked
   attr_accessor :marked
   end
 
@@ -19,12 +17,13 @@ class Player
   end
 
 class Board
+attr_accessor :board
+
   def initialize
     @board = [[[:a1], [:b1], [:c1]], [[:a2], [:b2], [:c2]], [[:a3], [:b3], [:c3]]]
     end
-
   def draw
-    @board.each_with_index do |x, _i|
+    @board.each_with_index do |x, i|
       x.each_with_index do |y, j|
         print y[0]
         print '|' unless j == 2
@@ -58,7 +57,7 @@ class Board
    end
     subarray = [[@board[0][0], @board[2][2]], [@board[0][2], @board[2][0]]]
     subarray.each do |inner_array|
-      results << (inner_array.uniq.include?(@board[1][1]) && inner_array.same_values?)
+    results << (inner_array.uniq.include?(@board[1][1]) && inner_array.same_values?)
     end
     results.include?(true)
     end
@@ -77,7 +76,7 @@ def start_game
       return
     end
     print "#{player.name} please enter a square to mark as a1, c2, b3 etc. :"
-    choice = gets.chomp.to_sym.downcase
+    choice = STDIN.gets.chomp.to_sym.downcase
     y = board.mark(choice, mark)
     y.marked = true
     puts
@@ -90,4 +89,3 @@ def start_game
   puts "#{player.name} WON! Congratulations #{player.name}:)"
   end
 
-start_game
